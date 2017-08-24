@@ -100,14 +100,6 @@ function +(x::Bool, y::T)::promote_type(Bool,T) where T<:AbstractFloat
 end
 +(y::AbstractFloat, x::Bool) = x + y
 
-function *(x::Bool, y::T)::promote_type(Bool,T) where T<:Number
-    return ifelse(x, y, copysign(zero(y), y))
-end
-function *(x::Bool, y::T)::promote_type(Bool,T) where T<:Unsigned
-    return ifelse(x, y, zero(y))
-end
-*(y::Number, x::Bool) = x * y
-
 div(x::Bool, y::Bool) = y ? x : throw(DivideError())
 fld(x::Bool, y::Bool) = div(x,y)
 cld(x::Bool, y::Bool) = div(x,y)
